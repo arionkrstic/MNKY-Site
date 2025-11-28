@@ -183,7 +183,7 @@ export default function Hero() {
               style={{ borderRadius: 32 }}
               initial={false}
               animate={{
-                width: view === 'otp' ? '100%' : (isExpanded ? 440 : 260),
+                width: view === 'otp' ? '100%' : (isExpanded ? '100%' : 260),
                 height: 60,
                 backgroundColor: view === 'otp' ? 'transparent' : (isExpanded ? 'rgba(255,255,255,0.05)' : '#ffffff'),
                 boxShadow: view === 'otp' 

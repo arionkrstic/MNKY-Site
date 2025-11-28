@@ -65,7 +65,7 @@ export default function Hero() {
   const verifyCode = async (code: string) => {
     setStatus('loading');
 
-    const { error } = await supabase.auth.verifyOtp({
+    const { data, error } = await supabase.auth.verifyOtp({
       email,
       token: code,
       type: 'email',
@@ -82,6 +82,25 @@ export default function Hero() {
         if (otpRefs.current[0]) otpRefs.current[0].focus();
       }, 1000);
       return;
+    }
+
+    try {
+        const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/resend-add-contact`;
+        
+        await fetch(functionUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
+            },
+            body: JSON.stringify({
+                type: 'auth.confirmed',
+                email: data.user?.email,
+                user: data.user
+            })
+        });
+    } catch (err) {
+        console.error('Failed to trigger edge function:', err);
     }
 
     setStatus('success');

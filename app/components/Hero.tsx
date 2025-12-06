@@ -176,7 +176,7 @@ export default function Hero() {
           MNKY
         </h1>
         <p className="max-w-2xl mx-auto text-lg md:text-2xl text-neutral-400 leading-relaxed mb-16 font-light text-balance">
-          Your personal productivity assistant, living exclusively in iMessage.
+          Your personal productivity assistant, living in your DMs.
           <span className="block mt-2 text-neutral-500">No new apps. No clutter. Just text.</span>
         </p>
         
